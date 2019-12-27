@@ -13,14 +13,16 @@ class Game {
      * @param {Snake} snake
      * @param {Menu} menu
      * @param {Food} food
+     * @param {Calc} calc
      */
-    init(settings, status, board, snake, menu, food) {
+    init(settings, status, board, snake, menu, food, calc) {
         this.settings = settings;
         this.status = status;
         this.board = board;
         this.snake = snake;
         this.menu = menu;
         this.food = food;
+        this.calc = calc;
     }
 
     /**
@@ -30,6 +32,9 @@ class Game {
     run() {
         this.menu.addButtonsClickListeners(this.start.bind(this), this.pause.bind(this));
         document.addEventListener('keydown', this.pressKeyHandler.bind(this));
+
+        //Отрисовывает новую длину змейки, когда она съела еду
+        this.calc.renderLengthSnake();
     }
 
     /**
@@ -70,10 +75,14 @@ class Game {
         if (this.board.isHeadOnFood()) {
             this.snake.increaseBody();
             this.food.setNewFood();
+
+            //Отрисовывает новую длину змейки, когда она съела еду
+            this.calc.renderLengthSnake();
         }
         this.board.clearBoard();
         this.food.setFood();
         this.board.renderSnake();
+
     }
 
     /**

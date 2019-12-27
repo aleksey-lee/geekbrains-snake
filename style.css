@@ -46,3 +46,9 @@ td {
     color: orange;
     font-size: 24px;
 }
+
+.text{
+    font-size: 20px;
+    color: #fff;
+    font-family: sans-serif;
+}

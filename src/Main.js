@@ -6,15 +6,17 @@ window.addEventListener('load', () => {
     const menu = new Menu();
     const food = new Food();
     const game = new Game();
+    const calc = new Calc();
     
     settings.init({ speed: 5, winLength: 5 });
     board.init(settings, snake);
-    food.init(settings, snake, board);
-    game.init(settings, status, board, snake, menu, food);
+    food.init(settings, snake, board, calc);
+    game.init(settings, status, board, snake, menu, food, calc);
 
     board.renderBoard();
     board.renderSnake();
 
     food.setNewFood();
+
     game.run();
 });
